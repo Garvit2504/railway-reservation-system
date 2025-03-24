@@ -11,10 +11,10 @@ const user = require('./routers/user')
 const contact = require('./routers/contact')
 const mongoose = require('mongoose')
 
-mongoose.connect(config.mongoDB, { useNewUrlParser: true }, function (err) {
-    if (err) throw err
-    console.log('mongo db connected')
-}).catch(err => console.log(err))
+mongoose.connect(config.mongoDB, { useNewUrlParser: true })
+    .then(() => console.log('✅ MongoDB connected'))
+    .catch(err => console.error('❌ Connection failed:', err));
+
 
 app.use(express.json());
 app.use(function (req, res, next) {
